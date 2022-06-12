@@ -8,16 +8,22 @@
             <h1 class="card-text" align="center"></h1>
             <div class="container">
                 <form>
+                    <div class="form-group">
+                        <label for="">ID Cliente:</label>    <br>
+                        <select class="form-control" aria-label="Default select example" id ="cliente" name = "cliente">
+                            <option [ngValue]="undefined">--Listado Clientes--</option>
+                            <option *ngFor="let cliente of clientes" [value]="cliente.nombre">{{cliente.id_cliente+'--'+cliente.nombre}}</option>
+                          </select>
+                    </div>
                     <div class="row">
-
-                        <button type="submit"  class="btn btn-outline-dark rounded-pill" onclick="addActivity(materiaS)">Agregar </button>
+                        <button type="submit"  class="btn btn-outline-dark rounded-pill">Agregar </button>
                     </div>
                     <br> <br>
                     <h1 class="card-text" align="center">Facturas</h1>
                     <br>
                     <div class="container">
                         <div class="table-responsive">
-                            <table class="table table-borderless table-hover" id="tablaActividades">
+                            <table class="table table-borderless table-hover" id="tablaDetalles">
                                 <thead>
                                 <tr>
                                     <th scope="col">ID Factura</th>
@@ -32,7 +38,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let detalle of detalles" class="text-center">
-                                        <td (onCreate)="buscarFactura(detalle.num_factura) ">{{detalle.num_factura}}</td>
+                                        <td (onCreate)="buscarFactura(detalle.num_factura)">{{detalle.num_factura}}</td>
                                         <td >{{facturaNueva.id_cliente}}</td>
                                         <td >{{facturaNueva.fecha}}</td>
                                         <td>{{detalle.num_detalle}}</td>
