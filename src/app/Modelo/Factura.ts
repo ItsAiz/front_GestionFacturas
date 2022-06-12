@@ -1,5 +1,7 @@
+import { Cliente } from "./Cliente";
+
 export class Factura{
     id_factura:number;
-    id_cliente:number;
+    cliente:Cliente;
     fecha:Date;
 }

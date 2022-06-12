@@ -30,6 +30,9 @@ export class ServiceService {
   saveCliente(cliente:Cliente){
       return this.http.post(this.UrlCliente+'/guardarCliente',cliente);
   }
+  getCliente(id:number){
+    return this.http.get<Cliente>(this.UrlProducto+'/obtenerCliente/'+id);
+  }
  //metodos Producto
   getProductos(){
     return this.http.get<Producto[]>(this.UrlProducto+'/listarProducto');
@@ -37,6 +40,9 @@ export class ServiceService {
   saveProducto(producto:Producto){
     return this.http.post(this.UrlProducto+'/guardarProducto',producto);
   } 
+  getProducto(id:number){
+    return this.http.get<Producto>(this.UrlProducto+'/obtenerProducto/'+id);
+  }
   //metodos Factura
   getFacturas(){
     return this.http.get<Factura[]>(this.UrlFactura+'/listarFactura');
