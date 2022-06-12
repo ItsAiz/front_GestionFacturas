@@ -22,8 +22,8 @@ export class FacturaComponent implements OnInit {
   clienteId: number;
   productoNuevo:Producto = {id_producto:0,nombre:'',precio:0, stock:0};
   clienteNuevo: Cliente ={id_cliente:0, nombre:'', apellido:'',direccion:'', fecha_nacimiento:new Date(''), telefono: 0,email:''};
-  facturaNueva: Factura ={id_factura:0, this.clienteNuevo, fecha:new Date('')};
-  detalleNuevo : Detalle = {num_detalle:0, this.facturaNueva, this.productoNuevo, cantidad:0, precio:0};
+  facturaNueva: Factura ={id_factura:0, cliente: this.clienteNuevo, fecha:new Date('')};
+  detalleNuevo : Detalle = {num_detalle:0, factura:this.facturaNueva , producto:this.productoNuevo, cantidad:0, precio:0};
   constructor(private service:ServiceService, private router:Router) { }
 
   ngOnInit(): void {
@@ -50,6 +50,7 @@ export class FacturaComponent implements OnInit {
   obtenerIdProducto(event:any){
       this.productoSelected = event.target.value;
       this.productId =parseInt(this.productoSelected.charAt(0));
+      this.obtenerClienteByID();
   }
   obtenerIdCliente(event:any){
     this.clienteSelected = event.target.value;
@@ -67,6 +68,14 @@ export class FacturaComponent implements OnInit {
           this.clienteNuevo.email = data.email;
       });
   }
+  obtenerProductoByID(){
+    this.service.getProducto(this.productId).subscribe(data=>{
+       this.productoNuevo.id_producto = data.id_producto;
+       this.productoNuevo.nombre = data.nombre;
+       this.productoNuevo.precio = data.precio;
+       this.productoNuevo.stock = data.stock;
+    });
+}
   Agregar(): void{
     this.service.saveDetalle(this.detalleNuevo).subscribe(res=>{
       alert("Cliente guardado con éxito");
