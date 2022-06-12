@@ -21,13 +21,14 @@ export class ProductoComponent implements OnInit {
       this.productos = data;
     });
   }
+  refresh(): void { window.location.reload(); }
   AgregarProducto(): void{
     this.service.saveProducto(this.productoNuevo).subscribe(res=>{
       alert("Producto guardado con éxito");
     },
     err=> alert("Error")
     );
-    this.router.navigate(["factura"]);
+    this.refresh();
 }
 
 }

@@ -22,8 +22,8 @@ export class FacturaComponent implements OnInit {
   clienteId: number;
   productoNuevo:Producto = {id_producto:0,nombre:'',precio:0, stock:0};
   clienteNuevo: Cliente ={id_cliente:0, nombre:'', apellido:'',direccion:'', fecha_nacimiento:new Date(''), telefono: 0,email:''};
-  facturaNueva: Factura ={id_factura:0, cliente: this.clienteNuevo, fecha:new Date('')};
-  detalleNuevo : Detalle = {num_detalle:0, factura:this.facturaNueva , producto:this.productoNuevo, cantidad:0, precio:0};
+  facturaNueva: Factura ={id_factura:3, cliente: this.clienteNuevo, fecha:new Date('')};
+  detalleNuevo : Detalle = {num_detalle:4, factura:this.facturaNueva , producto:this.productoNuevo, cantidad:0, precio:0};
   constructor(private service:ServiceService, private router:Router) { }
 
   ngOnInit(): void {
@@ -68,6 +68,7 @@ export class FacturaComponent implements OnInit {
           this.clienteNuevo.email = data.email;
       });
   }
+  refresh(): void { window.location.reload(); }
   obtenerProductoByID(){
     this.service.getProducto(this.productId).subscribe(data=>{
        this.productoNuevo.id_producto = data.id_producto;
@@ -75,7 +76,7 @@ export class FacturaComponent implements OnInit {
        this.productoNuevo.precio = data.precio;
        this.productoNuevo.stock = data.stock;
     });
-}
+  }
   Agregar(): void{
     let date:Date = new Date();
     this.facturaNueva.fecha = date;
@@ -85,18 +86,18 @@ export class FacturaComponent implements OnInit {
       this.productoNuevo.stock = this.productoNuevo.stock-this.detalleNuevo.cantidad;
       this.service.saveProducto(this.productoNuevo);
       this.detalleNuevo.precio = this.productoNuevo.precio*this.detalleNuevo.cantidad;
-      console.log(this.detalleNuevo);
+      console.log(this.facturaNueva);
       this.service.saveFactura(this.facturaNueva).subscribe(res=>{
         alert("Factura guardada con éxito");
       },
-      err=> alert("Error")
+      err=> alert("Error de factura")
       );
       this.service.saveDetalle(this.detalleNuevo).subscribe(res=>{
         alert("Detalle guardado con éxito");
       },
-      err=> alert("Error")
+      err=> alert("Error de detalle")
       );
-      this.router.navigate(["factura"]);
+      this.refresh();
     }else{
       alert("error cantidad en stock insuficiente o cantidad indicada errada");
     }

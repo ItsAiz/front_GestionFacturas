@@ -21,13 +21,15 @@ export class ClienteComponent implements OnInit {
       this.clientes = data;
     });
   }
+  refresh(): void { window.location.reload(); }
+
   Agregar(): void{
       this.service.saveCliente(this.clienteNuevo).subscribe(res=>{
         alert("Cliente guardado con éxito");
       },
       err=> alert("Error")
       );
-      this.router.navigate(["factura"]);
+      this.refresh();
   }
 
 }
