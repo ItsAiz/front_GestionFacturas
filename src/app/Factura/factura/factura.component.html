@@ -10,11 +10,11 @@
                 <form>
                     <div class="form-group">
                         <label for="">ID detalle:</label>    <br>
-                        <input type="number" class="form-control form-control-sm text-center" id="id_detalle" name = "id_detalle" disabled="true">
+                        <input type="number" class="form-control form-control-sm text-center" id="id_detalle" name = "id_detalle" [(ngModel)]="detalleNuevo.num_detalle" disabled="true">
                     </div>
                     <div class="form-group">
                         <label for="">ID factura:</label>    <br>
-                        <input type="number" class="form-control form-control-sm text-center" id="id_factura" name = "id_factura" disabled="true">
+                        <input type="number" class="form-control form-control-sm text-center" id="id_factura" name = "id_factura" [(ngModel)]="facturaNueva.id_factura" disabled="true">
                     </div>
                     <div class="d-flex justify-content-between flex-wrap">
                         <div class="form-group">
@@ -33,15 +33,15 @@
                         </div>
                         <div class="form-group col-md-4 col-lg-2">
                             <label for="">Cantidad:</label>    <br>
-                            <input type="text" class="form-control form-control-sm" id = "cantidad" name = "cantidad">
+                            <input type="text" class="form-control form-control-sm" id = "cantidad" name = "cantidad"[(ngModel)]="detalleNuevo.cantidad">
                         </div>
                         <div class="form-group col-md-4 col-lg-2">
                             <label for="">Precio:</label>    <br>
-                            <input type="text" class="form-control form-control-sm" id = "precio" name = "precio">
+                            <input type="text" class="form-control form-control-sm" id = "precio" name = "precio"[(ngModel)]="detalleNuevo.precio" disabled="true">
                         </div>
                     </div>
                     <div class="row">
-                        <button type="submit"  class="btn btn-outline-dark rounded-pill">Agregar </button>
+                        <button type="submit"  class="btn btn-outline-dark rounded-pill" (click)="Agregar()">Agregar </button>
                     </div>
                     <br> <br>
                     <h1 class="card-text" align="center">Facturas</h1>

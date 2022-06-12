@@ -77,13 +77,29 @@ export class FacturaComponent implements OnInit {
     });
 }
   Agregar(): void{
-    this.service.saveDetalle(this.detalleNuevo).subscribe(res=>{
-      alert("Cliente guardado con éxito");
-    },
-    err=> alert("Error")
-    );
-    this.router.navigate(["factura"]);
-}
+    let date:Date = new Date();
+    this.facturaNueva.fecha = date;
+    if(this.detalleNuevo.cantidad <= this.productoNuevo.stock && this.detalleNuevo.cantidad>0){
+      this.service.deleteProducto(this.productId);
+      this.productoNuevo.stock = this.productoNuevo.stock-this.detalleNuevo.cantidad;
+      this.service.saveProducto(this.productoNuevo);
+      this.detalleNuevo.precio = this.productoNuevo.precio*this.detalleNuevo.cantidad;
+      console.log(this.detalleNuevo);
+      this.service.saveFactura(this.facturaNueva).subscribe(res=>{
+        alert("Factura guardada con éxito");
+      },
+      err=> alert("Error")
+      );
+      this.service.saveDetalle(this.detalleNuevo).subscribe(res=>{
+        alert("Detalle guardado con éxito");
+      },
+      err=> alert("Error")
+      );
+      this.router.navigate(["factura"]);
+    }else{
+      alert("error cantidad en stock insuficiente o cantidad indicada errada");
+    }
+  }
 
 
 }

@@ -31,7 +31,7 @@ export class ServiceService {
       return this.http.post(this.UrlCliente+'/guardarCliente',cliente);
   }
   getCliente(id:number){
-    return this.http.get<Cliente>(this.UrlProducto+'/obtenerCliente/'+id);
+    return this.http.get<Cliente>(this.UrlCliente+'/obtenerCliente/'+id);
   }
  //metodos Producto
   getProductos(){
@@ -42,6 +42,9 @@ export class ServiceService {
   } 
   getProducto(id:number){
     return this.http.get<Producto>(this.UrlProducto+'/obtenerProducto/'+id);
+  }
+  deleteProducto(id:number){
+      this.http.delete(this.UrlProducto+'/eliminar/'+id);
   }
   //metodos Factura
   getFacturas(){
