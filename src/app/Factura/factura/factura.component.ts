@@ -50,7 +50,7 @@ export class FacturaComponent implements OnInit {
   obtenerIdProducto(event:any){
       this.productoSelected = event.target.value;
       this.productId =parseInt(this.productoSelected.charAt(0));
-      this.obtenerClienteByID();
+      this.obtenerProductoByID();
   }
   obtenerIdCliente(event:any){
     this.clienteSelected = event.target.value;
@@ -79,7 +79,8 @@ export class FacturaComponent implements OnInit {
   Agregar(): void{
     let date:Date = new Date();
     this.facturaNueva.fecha = date;
-    if(this.detalleNuevo.cantidad <= this.productoNuevo.stock && this.detalleNuevo.cantidad>0){
+    if(this.detalleNuevo.cantidad < this.productoNuevo.stock && this.detalleNuevo.cantidad>0){
+      console.log('entro');
       this.service.deleteProducto(this.productId);
       this.productoNuevo.stock = this.productoNuevo.stock-this.detalleNuevo.cantidad;
       this.service.saveProducto(this.productoNuevo);
