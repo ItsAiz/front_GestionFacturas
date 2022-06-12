@@ -1,0 +1,55 @@
+<div class="card">
+    <div class="card-header bg-white">
+    </div>
+</div>
+<div class="mx-auto" style="width: 90%;">
+    <div class="card text-center card border-white mb-0">
+        <div class="row row-cols-1 row-cols-md-1 row-cols-sm-1 row-cols-lg-1 g-4">
+            <h1 class="card-text" align="center"></h1>
+            <div class="container">
+                <form>
+                    <div class="row">
+
+                        <button type="submit"  class="btn btn-outline-dark rounded-pill" onclick="addActivity(materiaS)">Agregar </button>
+                    </div>
+                    <br> <br>
+                    <h1 class="card-text" align="center">Facturas</h1>
+                    <br>
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table table-borderless table-hover" id="tablaActividades">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID Factura</th>
+                                    <th scope="col">ID Cliente</th>
+                                    <th scope="col">Fecha</th>
+                                    <th scope="col">ID Detalle</th>
+                                    <th scope="col">ID Producto</th>
+                                    <th scope="col">Cantidad</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let detalle of detalles" class="text-center">
+                                        <td (onCreate)="buscarFactura(detalle.num_factura) ">{{detalle.num_factura}}</td>
+                                        <td >{{facturaNueva.id_cliente}}</td>
+                                        <td >{{facturaNueva.fecha}}</td>
+                                        <td>{{detalle.num_detalle}}</td>
+                                        <td>{{detalle.id_producto}}</td>
+                                        <td>{{detalle.cantidad}}</td>
+                                        <td>{{detalle.precio}}</td>
+                                        <td>
+                                            <a class = "btn btn-warning">Editar</a>
+							                <a class = "btn btn-danter">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

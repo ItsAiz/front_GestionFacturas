@@ -1,0 +1,68 @@
+<div class="card">
+    <div class="card-header bg-white">
+    </div>
+</div>
+<div class="mx-auto" style="width: 90%;">
+    <div class="card text-center card border-white mb-0">
+        <h1 class="card-text" align="center"></h1>
+            <div class="container">
+                <form>
+                    <div class="form-group">
+                        <label for="">ID:</label>    <br>
+                        <input type="number" class="form-control form-control-sm" id="id_producto" name = "id_producto"[(ngModel)]="productoNuevo.id_producto" disabled="true">
+                    </div>
+                    <div class="d-flex justify-content-between flex-wrap">
+                        <div class="form-group col-md-3 col-lg-2">
+                            <label for="">Nombre:</label>    <br>
+                            <input type="text" class="form-control form-control-sm" id = "nombre" name = "nombre" [(ngModel)]="productoNuevo.nombre">
+                        </div>
+                        <div class="form-group col-md-4 col-lg-2">
+                            <label for="">Precio:</label>    <br>
+                            <input type="number" class="form-control form-control-sm" id="precio"name = "precio"[(ngModel)]="productoNuevo.precio">
+                        </div>
+                        <div class="form-group col-md-4 col-lg-2">
+                            <label for="">Stock:</label>    <br>
+                            <input type="number" class="form-control form-control-sm" id="stock"name = "stock"[(ngModel)]="productoNuevo.stock">
+                        </div>
+                    </div>
+                    <br>
+                    <br><br>
+                    <div class="row">
+                        <button (click)="AgregarProducto()" type="submit"  class="btn btn-outline-dark rounded-pill">Agregar </button>
+                    </div>
+                    <br> <br>
+                    <h1 class="card-text" align="center">Productos</h1>
+                    <br>
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table table-borderless table-hover" id="tablaProductos">
+                                <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Precio</th>
+                                    <th scope="col">Stock</th>
+                                    <th scope="col">Opciones</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let producto of productos" class="text-center">
+                                        <td>{{producto.id_producto}}</td>
+                                        <td>{{producto.nombre}}</td>
+                                        <td>{{producto.precio}}</td>
+                                        <td>{{producto.stock}}</td>
+                                        <td>
+                                            <a class = "btn btn-warning">Editar</a>
+							                <a class = "btn btn-danter">Eliminar</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </div>
+</div>
+
+
